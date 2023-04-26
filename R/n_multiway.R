@@ -100,7 +100,12 @@ n.multiway <- function(iv1=NULL, iv2=NULL, iv3=NULL, iv4=NULL, interaction.eta2=
     df <- df.vector(num.ivs, df.from.lev)
 
     # Make a vector of the effect size strings for the interactions
-    es.strings.ints <- c(rep(interaction.eta2, total.interactions))
+    if(length(interaction.eta2)>1)
+    {
+        es.strings.ints <- interaction.eta2
+    } else {
+        es.strings.ints <- c(rep(interaction.eta2, total.interactions))
+    }
     all.es.strings <- c(es.strings, es.strings.ints)
 
     my.frame <- data.frame("variable" = variable.names, "df" = df, "eta.sq" = all.es.strings)
